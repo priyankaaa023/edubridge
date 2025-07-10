@@ -1,0 +1,28 @@
+#Pseudocode
+function TWO_SUM(nums, target):
+    table ← empty hash map
+    for i ← 0 to length(nums) − 1:
+        complement ← target − nums[i]
+        if complement in table:
+            return [table[complement], i]
+        table[nums[i]] ← i
+    return []          
+
+
+#program
+def two_sum(nums, target):
+    lookup = {}
+    for i, num in enumerate(nums):
+        comp = target - num
+        if comp in lookup:
+            return [lookup[comp], i]
+        lookup[num] = i
+    return []
+#algorithm
+Scan the array once while keeping a map from value ➜ index of every number we have already seen.
+
+For every current number num, compute its complement target − num.
+    * If the complement is already in the map, we found the two indices.
+    * Otherwise store num and continue.
+
+This gives O(n) time and O(n) extra space
