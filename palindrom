@@ -1,0 +1,41 @@
+#Algorithm 
+Every palindrome is centered on either a single char (odd length) or a gap (even length).
+
+For each index i treat it as center and expand outward while the ends match.
+
+Add the number of expansions to total.
+
+#Pseudocode
+
+function COUNT_PAL_SUBSTR(s):
+    function EXPAND(l, r):
+        count ← 0
+        while l ≥ 0 and r < length(s) and s[l] == s[r]:
+            count ← count + 1
+            l ← l − 1
+            r ← r + 1
+        return count
+
+    total ← 0
+    for i ← 0 to length(s) − 1:
+        total ← total + EXPAND(i, i)     // odd length
+        total ← total + EXPAND(i, i+1)   // even length
+    return total
+    
+
+#Python program
+
+def count_palindromic_substrings(s):
+    def expand(l, r):
+        cnt = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            cnt += 1
+            l -= 1
+            r += 1
+        return cnt
+
+    total = 0
+    for i in range(len(s)):
+        total += expand(i, i)       # odd
+        total += expand(i, i + 1)   # even
+    return total
