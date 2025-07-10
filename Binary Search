@@ -1,0 +1,37 @@
+#Algorithm
+Maintain two pointers left and right bounding the current search segment.
+Repeatedly take mid as the average of left & right.
+    * If arr[mid] == target → return mid.
+    * If target is smaller, discard right half (right = mid − 1).
+    * Otherwise discard left half (left = mid + 1).
+
+#psedocode
+
+function BINARY_SEARCH(arr, target):
+    left ← 0
+    right ← length(arr) − 1
+    while left ≤ right:
+        mid ← floor((left + right) / 2)
+        if arr[mid] == target:
+            return mid
+        else if arr[mid] < target:
+            left ← mid + 1
+        else:
+            right ← mid − 1
+    return −1         
+
+#program
+python
+Copy
+Edit
+def binary_search(arr, target):
+    lo, hi = 0, len(arr) - 1
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            lo = mid + 1
+        else:
+            hi = mid - 1
+    return -1
