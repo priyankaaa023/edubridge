@@ -1,0 +1,35 @@
+Algorithm (sliding window)
+Keep a sliding window [left … right] with no repeated characters.
+
+Use a map lastPos[char] → rightmost index seen.
+
+For each new right position:
+    * If s[right] already inside window, move left to lastPos+1.
+
+
+
+#Pseudocode
+
+function LONGEST_SUBSTR_NO_REPEAT(s):
+    table ← empty map
+    left ← 0
+    best ← 0
+    for right ← 0 to length(s) − 1:
+        c ← s[right]
+        if c in table and table[c] ≥ left:
+            left ← table[c] + 1
+        table[c] ← right
+        best ← max(best, right - left + 1)
+    return best
+
+# program
+
+def length_of_longest_substring(s):
+    last = {}
+    left = best = 0
+    for right, ch in enumerate(s):
+        if ch in last and last[ch] >= left:
+            left = last[ch] + 1
+        last[ch] = right
+        best = max(best, right - left + 1)
+    return best
