@@ -1,0 +1,26 @@
+#Algorithm
+Two strings are anagrams if the multiset of characters is identical.
+
+Simplest reliable trick: sort both strings and compare.
+    * Time: O(n log n).
+
+
+#Pseudocode 
+
+function IS_ANAGRAM(s1, s2):
+    if length(s1) ≠ length(s2): return false
+    freq ← empty map
+    for char in s1:
+        freq[char] ← freq.get(char,0) + 1
+    for char in s2:
+        if char not in freq or freq[char] == 0:
+            return false
+        freq[char] ← freq[char] - 1
+    return true
+
+3.3 Python program
+
+from collections import Counter
+
+def is_anagram(s1, s2):
+    return Counter(s1) == Counter(s2)
